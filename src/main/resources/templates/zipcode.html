@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/ajax.js}"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="wrapper" class="container-fluid">
+	<form method="POST" action="/zipcode/confirm">
+		<table >
+			<tr>
+				<th>郵便番号</th>
+				<td><input type="text" name="zipcode" value="" size="30" id="searchId"></input></td>
+				<td><input type="button" value="ajax" size="30" id="getZipCd"></input></td>
+				<td><input type="submit" value="送信" size="30"></input>
+					<font color="#ff0000"><th:block th:text="${errorMessage}"></th:block></font>
+				</td>
+
+			</tr>
+		</table>
+	</form>
+	<div id="jsonp"></div>
+    <div th:if="${status}">
+    	<p th:text="${status}" />
+    </div>
+    <div th:if="${zipcodeMsg}">
+    	<p th:text="${zipcodeMsg}" />
+    </div>
+    <div th:if="${zipcodeList}">
+
+	<table class="table table-borderd table-striped"  th:each="zipcode : ${zipcodeList}"
+		th:object="${zipcode}">
+		<tr>
+			<th>郵便番号</th>
+			<th>都道府県コード</th>
+			<th>都道府県名</th>
+			<th>市区町村名</th>
+			<th>町域名</th>
+			<th>都道府県名カナ</th>
+			<th>市区町村名カナ</th>
+			<th>町域名カナ</th>
+			<th>編集</th>
+			<th>POST</th>
+		</tr>
+		<tr>
+			<td th:text="*{zipcode}"></td>
+
+			<td th:text="*{prefcode}"></td>
+			<td th:text="*{address1}"></td>
+			<td th:text="*{address2}"></td>
+			<td th:text="*{address3}"></td>
+			<td th:text="*{kana1}"></td>
+			<td th:text="*{kana2}"></td>
+			<td th:text="*{kana3}"></td>
+            <td>
+                <form action="/zipcode/edit" method="post">
+                    <input type="submit" class="btn btn-outline-primary" name="edit" value="編集">
+                    <input type="hidden" name="zipcode" th:value="*{zipcode}">
+                </form>
+            </td>
+            <td>
+                <form action="/zipcode/post" method="post">
+                    <input type="submit" class="btn btn-outline-primary" name="post" value="post">
+                    <input type="hidden" name="zipcode" th:value="*{zipcode}">
+                </form>
+            </td>
+        </tr>
+	</table>
+  </div>
+  </div>
+</body>
+</html>
