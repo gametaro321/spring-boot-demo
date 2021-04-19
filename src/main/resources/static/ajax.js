@@ -6,7 +6,6 @@ $(document).ready(function(){
 		jQuery.ajax({
 			type: 'GET',
 			url: 'http://zipcloud.ibsnet.co.jp/api/search',
-
 			data:{
 				zipcode:zipcd
 			},
