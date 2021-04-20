@@ -24,4 +24,9 @@ public class HelloWorldController {
         }
         return "index";
     }
+
+    @RequestMapping(value = "/control", method = RequestMethod.GET)
+    public String control(Model model) {
+        return "control";
+    }
 }

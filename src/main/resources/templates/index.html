@@ -1,96 +1,51 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Hello</title>
-    <meta charset="utf-8" />
- <style>
-    #dragdroparea {
-        border:2px dotted #0B85A1;
-        width:500px;
-        height: 100px;
-        color:#92AAB0;
-        text-align:left;vertical-align:middle;
-        padding:10px 10px 10 10px;
-        margin-bottom:10px;
-        font-size:200%;
-    }
-</style>
- </head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hello</title>
+<meta charset="utf-8" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/ajax_restapi.js}"></script>
+<script type="text/javascript" th:src="@{/ajax_upload.js}"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/upload.css}">
+<link rel="stylesheet" th:href="@{/body.css}">
+</head>
+<body>
+	<div id="wrapper" class="container-fluid">
+	<div class="Header">ヘッダーを固定する</div>
+	<div class="Contents">
+		<h1>第１章 Spring Boot ”Hello World”</h1>
+		<h2>
+			<span th:text="${message}"></span>
+		</h2>
+		<h1>第２章 ドラッグ＆ドロップ</h1>
+		<div id="dragdroparea">ここにドロップしてください。</div>
+		<div id="status1"></div>
+		<br>
+		<h1>第３章 REST API</h1>
+		<h2>
+			<a href="zipcode">郵便番号検索APIを使用したREST API</a>
+		</h2>
+		<h1>第４章 ajax</h1>
+		<form method="POST" action="/zipcode/confirm">
+			<table >
+				<tr>
+					<th>郵便番号</th>
+					<td><input type="text" name="zipcode" value="" size="30" id="searchId"></input></td>
+					<td><input type="button" value="ajax" size="30" id="getZipCd"></input></td>
+					<td><div id="jsonp"></div></td>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script>
-  $(function() {
-      function sendFileToServer(formData,status){
-      var uploadURL ="/upload"; //Upload URL
-        $.ajax({
-          type: "POST",
-          url: uploadURL,
-          contentType:false,
-          processData: false,
-          cache: false,
-          data: formData,
-          timeout: 30000,
-          beforeSend: function(xhr, settings) {
-            //送信前の処理
-          },
-          complete: function(xhr, textStatus) {
-            //通信完了
-          },
-          success: function(result, textStatus, xhr) {
-            //ajax通信が成功した
-            $("#status1").append("File upload Done<br>");
-          },
-          error: function(xhr, textStatus, error) {
-            //ajax通信が失敗した
-            $('#status1').append('送信に失敗しました<br>');
-          }
-        });
-    }
-      function handleFileUpload(files,obj){
-       var fd = new FormData();
-         for (var i = 0; i < files.length; i++){
-           fd.append('files', files[i]);
-         }
-         sendFileToServer(fd,status);
-      }
-      $(document).ready(function(){
-          var obj = $("#dragdroparea");
-          obj.on('dragenter', function (e) {
-              e.stopPropagation();
-              e.preventDefault();
-          });
-          obj.on('dragover', function (e) {
-               e.stopPropagation();
-               e.preventDefault();
-          });
-          obj.on('drop', function (e) {
-           e.preventDefault();
-           var files = e.originalEvent.dataTransfer.files;
-           handleFileUpload(files);
-          });
-          $(document).on('dragenter', function (e){
-              e.stopPropagation();
-              e.preventDefault();
-          });
-          $(document).on('dragover', function (e){
-            e.stopPropagation();
-            e.preventDefault();
-          });
-          $(document).on('drop', function (e){
-              e.stopPropagation();
-              e.preventDefault();
-          });
-      });
-  });
-
-  </script>
-
-    <body>
-    <h1>第一章 Spring Boot＋Thymeleaf で”Hello World”を作成する</h1>
-    <h2><span th:text="${message}"></span></h2>
-  <h1>ドラッグ＆ドロップでファイルアップロード</h1>
-  <div id="dragdroparea">ここにドロップしてください。</div>
-  <br/><br/>
-  <div id="status1"></div>
-  </body>
+				</tr>
+			</table>
+		</form>
+		<h1>第５章 いろいろなコントール</h1>
+		<h2>
+			<a href="control">いろいろなコントールサンプル</a>
+		</h2>
+	</div>
+	<div class="Footer">フッターを固定する</div>
+	</div>
+</body>
 </html>

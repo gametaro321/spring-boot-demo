@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.dto.ZipCodeDto;
+import com.example.demo.dto.ZipCodeDto2;
 
 @Service
 public class ZipCodeService {
@@ -28,4 +29,8 @@ public class ZipCodeService {
     public ZipCodeDto service(ZipCodeDto zipCodeDto) {
         return restTemplate.postForObject(URL2, zipCodeDto, ZipCodeDto.class);
     }
+    public ZipCodeDto2 service2() {
+        return restTemplate.getForObject(URL2, ZipCodeDto2.class);
+    }
+
 }

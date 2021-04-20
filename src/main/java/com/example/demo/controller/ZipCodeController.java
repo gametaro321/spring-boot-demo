@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.ZipCodeDataDto;
 import com.example.demo.dto.ZipCodeDto;
+import com.example.demo.dto.ZipCodeDto2;
 import com.example.demo.service.ZipCodeService;
 
 @Controller
@@ -44,16 +45,21 @@ public class ZipCodeController {
         // 一応必須チェックのみ 数字・桁数チェックは省略
         // nullまたは空文字の場合、入力フォームにエラーメッセージを表示
         if (zipcode == null || zipcode.equals("")) {
-            model.addAttribute("errorMessage", "郵便番号を入力してください。");
-            return zipcodeForm(session, model);
-        }
+			ZipCodeDto2 zipCodeDto2 = zpcService.service2();
+			model.addAttribute("zipcodeList", zipCodeDto2.getResults());
 
-        // 郵便番号検索APIサービス呼び出し
-        ZipCodeDto zipCodeDto = zpcService.service(zipcode);
-        model.addAttribute("zipcodeMsg", zipCodeDto.getMessage());
-        model.addAttribute("status", zipCodeDto.getStatus());
+//            model.addAttribute("errorMessage", "郵便番号を入力してください。");
+//            return zipcodeForm(session, model);
+        }else {
+            // 郵便番号検索APIサービス呼び出し
+          ZipCodeDto zipCodeDto = zpcService.service(zipcode);
+          model.addAttribute("zipcodeMsg", zipCodeDto.getMessage());
+          model.addAttribute("status", zipCodeDto.getStatus());
+	      model.addAttribute("zipcodeList", zipCodeDto.getResults());
+      }
+
+
         // thymeleafでリストを展開して表示する
-        model.addAttribute("zipcodeList", zipCodeDto.getResults());
         return zipcodeForm(session, model);
     }
 
