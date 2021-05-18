@@ -22,10 +22,31 @@ body {
 	height: 35px; /* フッターの高さを指定する */
 	padding: 10px; /* フッター内側の余白を指定する(上下左右) */
 	background-color: #31a9ee; /* フッターの背景色を指定する */
-	color: #FFFFFF; /* フッターのフォントの色を指定する */
+	color: #000000; /* フッターのフォントの色を指定する */
+
 }
 
 .Contents {
 	width: 100%; /* コンテンツの横幅を指定する */
 	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+}
+
+table th ,td {
+    border:1px solid;
+    }
+     
+/*　スクロールバーの実装 */
+.table_sticky {
+    display: block;
+    overflow-y: scroll;
+    height: 72vh;
+    border:1px solid;
+    border-collapse: collapse;
+}
+.table_sticky thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color:#31a9ee;
+    border-top:#FFFFFF;
 }

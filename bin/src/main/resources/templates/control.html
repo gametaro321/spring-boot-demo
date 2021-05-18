@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>control</title>
+<meta charset="utf-8" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/body.css}"></head>
+<body>
+	<div id="wrapper" class="container-fluid">
+	<div class="Header">ヘッダーを固定する</div>
+	<div class="Contents">
+	<table>
+		<tr>
+			<th>カレンダー</th>
+			<td><input type="date" name="date"></td>
+			<td><input type="submit" value="送信"></td>
+		</tr>
+		<tr>
+			<th>ファイル</th>
+			<td><input type="file" name="datafile"></td>
+			<td><input type="submit" value="送信"></td>
+		</tr>
+		<tr>
+			<th>必須入力</th>
+			<td><input type="text" name="name" required placeholder="キーワードを入力"></td>
+			<td><input type="submit" value="送信"></td>
+		</tr>
+
+	</table>
+
+		</div>
+	<div class="Footer">フッターを固定する</div>
+	</div>
+</body>
+</html>

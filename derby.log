@@ -1,0 +1,16 @@
+----------------------------------------------------------------
+Wed May 12 20:58:08 JST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0179-6070-fd9e-000007e0b5b0 
+on database directory memory:/Users/kameokahirofumi/workspace/spring-boot-demo/e0ea1a12-b5e8-4945-83a6-b06e77ed72eb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@2c13da15 
+Loaded from file:/Users/kameokahirofumi/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=AdoptOpenJDK
+java.runtime.version=11.0.10+9
+user.dir=/Users/kameokahirofumi/workspace/spring-boot-demo
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.16
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed May 12 20:58:10 JST 2021:
+Shutting down instance a816c00e-0179-6070-fd9e-000007e0b5b0 on database directory memory:/Users/kameokahirofumi/workspace/spring-boot-demo/e0ea1a12-b5e8-4945-83a6-b06e77ed72eb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@2c13da15 

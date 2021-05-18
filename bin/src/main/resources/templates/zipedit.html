@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<title>顧客編集</title>
+</head>
+<body>
+	<div id="wrapper" class="container-fluid">
+	<div class="container">
+		<h1 class="my-5">住所編集</h1>
+		<form th:object= "${zipCodeDataDto}" action="/zipcode/post2" method="post">
+			<table class="table table-borderd table-striped">
+				<tr >
+					<th>郵便番号</th>
+					<td><input type="text" class="form-control" name="zipcode"
+						th:field="*{zipcode}"
+						th:classappend="${#fields.hasErrors('zipcode')} ? 'is-invalid'">
+						<span
+						class="text-danger" th:if="${#fields.hasErrors('zipcode')}"
+						th:errors="*{zipcode}"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>都道府県名</th>
+					<td><input type="text" class="form-control" name="address1"
+						th:field="*{address1}"
+						th:classappend="${#fields.hasErrors('address1')} ? 'is-invalid'">
+ 						<span
+						class="text-danger" th:if="${#fields.hasErrors('address1')}"
+						th:errors="*{address1}"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>市区町村名</th>
+					<td><input type="text" class="form-control" name="address2"
+						th:field="*{address2}"
+						th:classappend="${#fields.hasErrors('address2')} ? 'is-invalid'">
+ 						<span
+						class="text-danger" th:if="${#fields.hasErrors('address2')}"
+						th:errors="*{address2}"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>町域名</th>
+					<td><input type="text" class="form-control" name="address3"
+						th:field="*{address3}"
+						th:classappend="${#fields.hasErrors('address3')} ? 'is-invalid'">
+ 						<span
+						class="text-danger" th:if="${#fields.hasErrors('address3')}"
+						th:errors="*{address3}"></span>
+					</td>
+				</tr>
+           	</table>
+           	<input type="submit" class="btn btn-outline-primary" name="post" value="post">
+		</form>
+	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<title>編集</title>
+</head>
+<body>
+	<div id="wrapper" class="container-fluid">
+		<div class="container">
+			<h1 class="my-5">住所編集</h1>
+
+			<form th:object="${IdolMasterDataDto}" action="/zipcode/post2"
+				method="post">
+				<table width=70%>
+					<tr>
+						<th><a th:href="*{DATA_PATH}" target=_blank rel="noopener">
+								<p style="position: relative; height: 500px; overflow: hidden;">
+									<img th:src="*{IMAGE_PATH}" th:alt="*{NAME}" height="500px"
+										style="position: relative; top: 0px; left: 0px">
+								</p>
+						</a></th>
+						<td valign="top" align="left"	>
+							<table class="table-borderd table-striped" >
+								<tr>
+									<th>ID</th>
+									<td><input type="text" class="form-control" name="DATA_PATH"
+										th:field="*{DATA_PATH}"
+										th:classappend="${#fields.hasErrors('DATA_PATH')} ? 'is-invalid'">
+										<span class="text-danger" th:if="${#fields.hasErrors('DATA_PATH')}"
+										th:errors="*{DATA_PATH}"></span></td>
+								</tr>
+								<tr>
+									<th>名前</th>
+									<td><input type="text" class="form-control" name="NAME"
+										th:field="*{NAME}"
+										th:classappend="${#fields.hasErrors('NAME')} ? 'is-invalid'">
+										<span class="text-danger" th:if="${#fields.hasErrors('NAME')}"
+										th:errors="*{NAME}"></span></td>
+								</tr>
+								<tr>
+									<th>フリガナ</th>
+									<td><input type="text" class="form-control"
+										name="FURIGANA" th:field="*{FURIGANA}"
+										th:classappend="${#fields.hasErrors('FURIGANA')} ? 'is-invalid'">
+										<span class="text-danger"
+										th:if="${#fields.hasErrors('FURIGANA')}"
+										th:errors="*{FURIGANA}"></span></td>
+								</tr>
+								<tr>
+									<th>タイプ</th>
+									<td><input type="text" class="form-control" name="TYPE"
+										th:field="*{TYPE}"
+										th:classappend="${#fields.hasErrors('TYPE')} ? 'is-invalid'">
+										<span class="text-danger" th:if="${#fields.hasErrors('TYPE')}"
+										th:errors="*{TYPE}"></span></td>
+								</tr>
+								<tr>
+									<th>身長</th>
+									<td><input type="text" class="form-control" name="HEIGHT"
+										th:field="*{HEIGHT}"
+										th:classappend="${#fields.hasErrors('HEIGHT')} ? 'is-invalid'">
+										<span class="text-danger"
+										th:if="${#fields.hasErrors('HEIGHT')}" th:errors="*{HEIGHT}"></span>
+
+									</td>
+								</tr>
+								<tr>
+									<th>誕生日</th>
+									<td><input type="text" class="form-control"
+										name="BRITHDAY" th:field="*{BRITHDAY}"
+										th:classappend="${#fields.hasErrors('BRITHDAY')} ? 'is-invalid'">
+										<span class="text-danger"
+										th:if="${#fields.hasErrors('BRITHDAY')}"
+										th:errors="*{BRITHDAY}"></span></td>
+								</tr>
+								<tr>
+									<th>血液型</th>
+									<td><input type="text" class="form-control"
+										name="BLOOD_TYPE" th:field="*{BLOOD_TYPE}"
+										th:classappend="${#fields.hasErrors('BLOOD_TYPE')} ? 'is-invalid'">
+										<span class="text-danger"
+										th:if="${#fields.hasErrors('BLOOD_TYPE')}"
+										th:errors="*{BLOOD_TYPE}"></span></td>
+								</tr>
+								<tr>
+									<th>B</th>
+									<td><input type="text" class="form-control"
+										name="THREE_SIZE_B" th:field="*{THREE_SIZE_B}"
+										th:classappend="${#fields.hasErrors('THREE_SIZE_B')} ? 'is-invalid'">
+										<span class="text-danger"
+										th:if="${#fields.hasErrors('THREE_SIZE_B')}"
+										th:errors="*{THREE_SIZE_B}"></span></td>
+								</tr>
+								<tr>
+									<th>W</th>
+									<td><input type="text" class="form-control"
+										name="THREE_SIZE_W" th:field="*{THREE_SIZE_W}"
+										th:classappend="${#fields.hasErrors('THREE_SIZE_W')} ? 'is-invalid'">
+										<span class="text-danger"
+										th:if="${#fields.hasErrors('THREE_SIZE_W')}"
+										th:errors="*{THREE_SIZE_W}"></span></td>
+								</tr>
+								<tr>
+									<th>H</th>
+									<td><input type="text" class="form-control"
+										name="THREE_SIZE_H" th:field="*{THREE_SIZE_H}"
+										th:classappend="${#fields.hasErrors('THREE_SIZE_H')} ? 'is-invalid'">
+										<span class="text-danger"
+										th:if="${#fields.hasErrors('THREE_SIZE_H')}"
+										th:errors="*{THREE_SIZE_H}"></span></td>
+								</tr>
+								<tr>
+									<th>出身地</th>
+									<td><input type="text" class="form-control"
+										name="BRITHPLACE" th:field="*{BRITHPLACE}"
+										th:classappend="${#fields.hasErrors('BRITHPLACE')} ? 'is-invalid'">
+										<span class="text-danger"
+										th:if="${#fields.hasErrors('BRITHPLACE')}"
+										th:errors="*{BRITHPLACE}"></span></td>
+								</tr>
+								<tr>
+									<th>趣味</th>
+									<td><input type="text" class="form-control" name="HOBBY"
+										th:field="*{HOBBY}"
+										th:classappend="${#fields.hasErrors('HOBBY')} ? 'is-invalid'">
+										<span class="text-danger"
+										th:if="${#fields.hasErrors('HOBBY')}" th:errors="*{HOBBY}"></span>
+
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<input type="submit" class="btn btn-outline-primary" name="post"
+					value="post">
+			</form>
+		</div>
+	</div>
+</body>
+</html>

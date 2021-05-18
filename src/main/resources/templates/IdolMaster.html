@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Insert title here</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/ajax.js}"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/upload.css}">
+<link rel="stylesheet" th:href="@{/body.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/css/theme.default.min.css">
+<script>
+$(document).ready(function() {
+    $('#fav-table').tablesorter({
+        headers: {
+            2: { sorter: false }
+        }
+    } );
+});
+</script>
+</head>
+<body>
+	<div id="wrapper" class="container-fluid">
+		<div class="Header">ヘッダーを固定する</div>
+		<div class="Contents">
+			<div id="wrapper" class="container-fluid">
+				<form method="POST" action="/IdolMaster/confirm">
+					<table>
+						<tr>
+							<th>検索</th>
+							<td><input type="text" name="idolNo" value="" size="30"
+								id="searchId"></input></td>
+							<td><input type="submit" value="送信" size="30"></input> <font
+								color="#ff0000"><th:block th:text="${errorMessage}"></th:block></font>
+							</td>
+
+						</tr>
+					</table>
+				</form>
+				<div th:if="${IdolDataList}">
+					<div class="sticky_table_wrapper">
+
+						<table id="fav-table"
+							class="table_sticky table table-borderd table-striped">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>名前</th>
+									<th></th>
+									<th>ふりがな</th>
+									<th>タイプ</th>
+									<th>年齢</th>
+									<th>身長</th>
+									<th>体重</th>
+									<th>誕生日</th>
+									<th>血液型</th>
+									<th>利き手</th>
+									<th>B</th>
+									<th>W</th>
+									<th>H</th>
+									<th>星座</th>
+									<th>出身地</th>
+									<th>趣味</th>
+									<th>CV</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="IdolData : ${IdolDataList}" th:object="${IdolData}">
+									<td th:text="*{ID}"></td>
+									<td>
+										<a th:href="*{DATA_PATH}" th:text="*{NAME}" target=_blank rel="noopener"></a>
+									</td>
+									<td>
+										<p style="position:relative;width: 60px;overflow: hidden;">
+										<img th:src="*{IMAGE_PATH}" th:alt="*{NAME}" width="250" style="position:relative; top: 0px; left: -90px">
+										</p>
+									</td>
+									<td th:text="*{FURIGANA}"></td>
+									<td th:text="*{TYPE}"></td>
+									<td th:text="*{AGE}"></td>
+									<td th:text="*{HEIGHT}"></td>
+									<td th:text="*{WEIGHT}"></td>
+									<td th:text="*{BRITHDAY}"></td>
+									<td th:text="*{BLOOD_TYPE}"></td>
+									<td th:text="*{DOMINANT_HAND}"></td>
+									<td th:text="*{THREE_SIZE_B}"></td>
+									<td th:text="*{THREE_SIZE_W}"></td>
+									<td th:text="*{THREE_SIZE_H}"></td>
+									<td th:text="*{SIGN}"></td>
+									<td th:text="*{BRITHPLACE}"></td>
+									<td th:text="*{HOBBY}"></td>
+									<td th:text="*{CV}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="Footer">フッターを固定する</div>
+		</div>
+	</div>
+</body>
+</html>
