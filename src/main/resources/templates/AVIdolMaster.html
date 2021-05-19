@@ -100,11 +100,30 @@ $(document).ready(function() {
             <ul>
                 <li th:class="${page.first} ? 'disabled':''" style="display:inline">
 
-                    <div th:if="${not page.first}" th:href="@{${url}(page=(${page.totalPages}-1))}" style="display:inline">
+                    <div th:if="${not page.first}" style="display:inline">
 		                <form action="/AVIdolMaster/list" method="post" style="display:inline" class="page-item">
 		                    <input type="submit"  name="list" th:value="先頭" class="btn btn-outline-primary">
 		                    <input type="hidden" name="page" th:value="0" >
 		                    <input type="hidden" name="idolNo" value="" > 
+		                </form>
+                    </div>
+                    <div th:if="${page.first}" style="display:inline">
+		                <form action="/AVIdolMaster/list" method="post" style="display:inline" class="page-item">
+		                    <input type="submit"  name="list" th:value="先頭" class="btn btn-outline-primary"  disabled>
+		                </form>
+                    </div>
+                </li>
+                <li th:class="${page.first} ? 'disabled':''" style="display:inline">
+                    <div th:if="${not page.first}" style="display:inline">
+		                <form action="/AVIdolMaster/list" method="post" style="display:inline" class="page-item">
+		                    <input type="submit"  name="list" th:value="前" class="btn btn-outline-primary">
+		                    <input type="hidden" name="page" th:value=${page.number}-1 >
+		                    <input type="hidden" name="idolNo" value="" > 
+		                </form>
+                    </div>
+                    <div th:if="${page.first}" style="display:inline">
+		                <form action="/AVIdolMaster/list" method="post" style="display:inline" class="page-item">
+		                    <input type="submit"  name="list" th:value="前" class="btn btn-outline-primary"  disabled>
 		                </form>
                     </div>
                 </li>
@@ -117,14 +136,26 @@ $(document).ready(function() {
 		                    <input type="hidden" name="idolNo" value="" > 
 		                </form>
                     </div>
-               	<div th:if='${i}==${page.number}' style="display:inline">
+	               	<div th:if='${i}==${page.number}' style="display:inline">
+			                <form action="/AVIdolMaster/list" method="post" style="display:inline" class="page-item">
+			                    <input type="submit"  name="list" th:value="${i+1}" class="btn btn-outline-primary" disabled>
+			                </form>
+	                </div>
+
+                </li>
+                <li th:class="${page.last} ? 'disabled':''" style="display:inline">
+                    <div th:if="${not page.last}" style="display:inline">
 		                <form action="/AVIdolMaster/list" method="post" style="display:inline" class="page-item">
-		                    <input type="submit"  name="list" th:value="${i+1}" class="btn btn-outline-primary" disabled>
-		                    <input type="hidden" name="page" th:value="${i}" >
+		                    <input type="submit"  name="list" th:value="次" class="btn btn-outline-primary">
+		                    <input type="hidden" name="page" th:value=${page.number}+1 >
 		                    <input type="hidden" name="idolNo" value="" > 
 		                </form>
-                </div>
-
+                    </div>
+                    <div th:if="${page.last}" style="display:inline">
+		                <form action="/AVIdolMaster/list" method="post" style="display:inline" class="page-item">
+		                    <input type="submit"  name="list" th:value="次" class="btn btn-outline-primary" disabled>
+		                </form>
+                    </div>
                 </li>
                 <li th:class="${page.last} ? 'disabled':''" style="display:inline">
                     <div th:if="${not page.last}" style="display:inline">
@@ -133,7 +164,11 @@ $(document).ready(function() {
 		                    <input type="hidden" name="page" th:value=${page.totalPages}-1 >
 		                    <input type="hidden" name="idolNo" value="" > 
 		                </form>
-                    
+                    </div>
+                    <div th:if="${page.last}" style="display:inline">
+		                <form action="/AVIdolMaster/list" method="post" style="display:inline" class="page-item">
+		                    <input type="submit"  name="list" th:value="末尾" class="btn btn-outline-primary" disabled>
+		                </form>
                     </div>
                 </li>
             </ul>
