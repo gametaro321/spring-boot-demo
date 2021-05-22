@@ -86,6 +86,29 @@ public class IdolMasterService {
 //		return namedJdbcTemplate.query(sql, parameters,rowMapper);
 		return AVIdolDataRepository.findUser(arg1 );
 	}
+	/**
+	 * 
+	 * @param arg1:検索ワード[NAME]
+	 * @return
+	 */
+	public List<AVIdolDataDto> findUser(String arg1){
+		// namedJdbcTemplateによるデータ取得サンプル
+        SqlParameterSource parameters = 
+            new MapSqlParameterSource("NAME",  arg1  )
+                            .addValue("LIMIT", 100)
+                            .addValue("OFFSET", 0);
+        
+        String sql = "SELECT * FROM AV_IDOL_DATA T11"  
+                   + " WHERE 1=1"
+                   + "   AND NAME = :NAME  "
+                   + "   AND ID > 0 "
+                   + " ORDER BY NAME,TYPE,DATA_PATH"
+                   + " LIMIT :LIMIT OFFSET :OFFSET" ;
+         
+         
+	    RowMapper<AVIdolDataDto> rowMapper = new BeanPropertyRowMapper<AVIdolDataDto>(AVIdolDataDto.class);
+		return namedJdbcTemplate.query(sql, parameters,rowMapper);
+	}
 
 	/**
 	 * 

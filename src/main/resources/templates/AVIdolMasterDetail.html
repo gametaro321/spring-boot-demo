@@ -1,49 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{template :: layout(~{::title},~{::body/content()})}">
 <head>
-<meta charset="UTF-8"></meta>
-<title>Insert title here</title>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
-<script type="text/javascript"
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" th:src="@{/ajax.js}"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" th:href="@{/upload.css}">
-<link rel="stylesheet" th:href="@{/body.css}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/css/theme.default.min.css">
-<script>
-$(document).ready(function() {
-    $('#fav-table').tablesorter({
-        headers: {
-            2: { sorter: false }
-        }
-    } );
-});
-</script>
+<!--/* (2) */-->
+<title>Create Staff Information</title>
 </head>
 <body>
 	<div id="wrapper" class="container-fluid">
-		<div class="Header">ヘッダーを固定する</div>
 		<div class="Contents">
 			<div id="wrapper" class="container-fluid">
-				<form method="POST" action="/AVIdolMaster/list">
-					<table>
-						<tr>
-							<th>検索</th>
-							<td><input type="text" name="idolNo" value="" size="30"
-								id="searchId"></input></td>
-							<td><input type="submit" value="送信" size="30"></input> <font
-								color="#ff0000"><th:block th:text="${errorMessage}"></th:block></font>
-							</td>
-
-						</tr>
-					</table>
-				</form>
 				<div th:if="${AVIdolDataList}">
 					<div class="sticky_table_wrapper">
 
@@ -101,7 +66,6 @@ $(document).ready(function() {
 				</div>
 			</div>
 
-			<div class="Footer">フッターを固定する</div>
 		</div>
 	</div>
 </body>

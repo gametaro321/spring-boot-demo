@@ -22,6 +22,7 @@ public class HelloWorldController {
         for (MultipartFile file : files) {
             System.out.println("getOriginalFilename="+file.getOriginalFilename());
         }
+
         return "index";
     }
 

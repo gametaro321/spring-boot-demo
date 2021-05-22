@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.AVIdolDataDto;
-import com.example.demo.dto.ZipCodeDataDto;
 import com.example.demo.repository.AVIdolDataRepository;
 import com.example.demo.service.IdolMasterService;
 
@@ -39,21 +38,17 @@ public class AVIdolMasterController {
      */
     @RequestMapping("/AVIdolMaster")
     public String initForm(HttpSession session, Model model) {
+
+
         return "AVIdolMaster";
     } 
     /**
      * 一覧画面表示
      */
-    @RequestMapping(value="/AVIdolMaster/list", method=RequestMethod.GET)
-    public String listFormg2(HttpSession session, Model model, Pageable pageable){
-        // thymeleafでリストを展開して表示する
-        return initForm(session, model);
-    }
-
-    		@RequestMapping(value="/AVIdolMaster/list", method=RequestMethod.POST)
+	@RequestMapping(value="/AVIdolMaster/list", method=RequestMethod.POST)
     public String listForm(HttpSession session, Model model, 
-    		@PageableDefault(page = 0, size = 1000, direction = Direction.DESC, sort = { "NAME","ID"  }) Pageable pageable,
-            @RequestParam("idolNo") String idolNo){
+		@PageableDefault(page = 0, size = 100, direction = Direction.DESC, sort = { "NAME","ID"  }) Pageable pageable,
+        @RequestParam(value = "idolNo" , required = false) String idolNo){
 
     	try {
  
@@ -61,8 +56,10 @@ public class AVIdolMasterController {
 	        ///List<AVIdolDataDto> AVIdolDataDto ;
         	if (idolNo == null || idolNo.equals("")) {
         		AVIdolData = idolMasterService.findAllUsers(pageable);
+            	model.addAttribute("empname", ""); 
             }else {
             	AVIdolData = idolMasterService.findUsers(idolNo,pageable);
+            	model.addAttribute("empname", idolNo); 
             }
         	model.addAttribute("page", AVIdolData); 
             model.addAttribute("errorMessage", AVIdolData.getContent().size()+ "件");
@@ -78,7 +75,7 @@ public class AVIdolMasterController {
      * 詳細画面表示
      */
     @RequestMapping(value="/AVIdolMaster/detail", method=RequestMethod.POST)
-    public String DetailForm(HttpSession session, Model model,@ModelAttribute ZipCodeDataDto zipCodeDataDto,
+    public String DetailForm(HttpSession session, Model model,@ModelAttribute AVIdolDataDto AVIdolDataDto,
                                  @RequestParam("ID") int ID){
         List<AVIdolDataDto> idolList = idolMasterService.findUser(ID);
         model.addAttribute("errorMessage", idolList.size()+ "件");
@@ -90,11 +87,31 @@ public class AVIdolMasterController {
      * 登録画面表示
      */
     @RequestMapping(value="/AVIdolMaster/edit", method=RequestMethod.POST)
-    public String EditForm(HttpSession session, Model model,@ModelAttribute ZipCodeDataDto zipCodeDataDto,
+    public String EditForm(HttpSession session, Model model,@ModelAttribute AVIdolDataDto AVIdolDataDto,
                                  @RequestParam("DATA_PATH") String DATA_PATH){
     	List<AVIdolDataDto> idolList = idolMasterService.getList3(DATA_PATH);
        	model.addAttribute("IdolMasterDataDto", idolList.get(0));
        	return "AVIdolMasterEdit";     
+    }    
+    /**
+     * 登録!!
+     */
+    @RequestMapping(value="/AVIdolMaster/regit", method=RequestMethod.POST)
+    public String EditRegit(HttpSession session, Model model,@ModelAttribute AVIdolDataDto AVIdolDataDto,
+                                 @RequestParam("DATA_PATH") String DATA_PATH){
+    	AVIdolDataRepository.save(AVIdolDataDto);
+       	return DetailForm(session, model,AVIdolDataDto,AVIdolDataDto.getID().intValue());     
+    }    
+    /**
+     * 削除!!
+     */
+    @RequestMapping(value="/AVIdolMaster/delete", method=RequestMethod.POST)
+    public String EditDelete(HttpSession session
+    		               , Model model
+    		               , @ModelAttribute AVIdolDataDto AVIdolDataDto){
+    	AVIdolDataRepository.delete(AVIdolDataDto);
+    	List<AVIdolDataDto> idolList = idolMasterService.findUser(AVIdolDataDto.getNAME());
+       	return DetailForm(session, model,idolList.get(0),idolList.get(0).getID().intValue());     
     }    
 
 }
