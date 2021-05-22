@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--/* (1) */-->
+<html class="no-js" xmlns:th="http://www.thymeleaf.org" th:fragment="layout (title,body)">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" th:href="@{/resources/app/css/styles.css}" type="text/css"
+    media="screen, projection">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/upload.css}">
+<link rel="stylesheet" th:href="@{/body.css}">
+<link rel="stylesheet" th:href="@{/tabctl.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/css/theme.default.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/ajax.js}"></script>
+<script type="text/javascript" th:src="@{/ajax_upload.js}"></script>
+<script type="text/javascript" th:src="@{/ajax_restapi.js}"></script>
+
+<script>
+$(document).ready(function() {
+    $('#fav-table').tablesorter({
+        headers: {
+            2: { sorter: false }
+        }
+    } );
+});
+</script>
+<!--/* (2) */-->
+<title th:replace="${title}">Staff Management System</title>
+</head>
+<body>
+    <!--/* (3) */-->
+    <div class="Header">
+    <div id="header" th:replace="~{header :: header}"></div>
+    </div>
+    <article>
+    <div class="Navi">
+    <div id="navi" th:replace="~{navi :: navi}"></div>
+    </div>
+    <!--/* (4) */-->
+    <div class="Contents">
+    <div id="body" th:replace="${body}"></div>
+    </div>
+    </article>
+    <!--/* (5) */-->
+    <div class="Footer">
+    <div id="footer" th:replace="~{footer :: footer}"></div>
+    </div>
+</body>
+</html>
