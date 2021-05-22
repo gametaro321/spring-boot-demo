@@ -40,11 +40,11 @@ public interface AVIdolDataRepository extends JpaRepository<AVIdolDataDto, Integ
                  + "   ) "
                  + "   AND ID > 0 " 
                  + " ORDER BY NAME" 
-                 + "        , TYPE " 
+                 + "        , TYPE" 
 	  	   , nativeQuery = true
 	) // SQL
 	Page<AVIdolDataDto> findUsers(String name,Pageable pageable); 
-	  
+
 	@Query(value = "SELECT * "
                  + "  FROM AV_IDOL_DATA T11"
                  + " WHERE 1=1"
@@ -55,7 +55,7 @@ public interface AVIdolDataRepository extends JpaRepository<AVIdolDataDto, Integ
                  + "   ) "
                  + "   AND ID > 0 " 
                  + " ORDER BY NAME" 
-                 + "        , TYPE " 
+                 + "        , TYPE" 
  	   , nativeQuery = true
     ) // SQL
     List<AVIdolDataDto> findUser(int ID); 

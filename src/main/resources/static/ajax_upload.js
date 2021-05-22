@@ -12,6 +12,7 @@
           timeout: 30000,
           beforeSend: function(xhr, settings) {
             //送信前の処理
+			$("#status1").empty();
           },
           complete: function(xhr, textStatus) {
             //通信完了
