@@ -30,15 +30,13 @@ body {
   width:20%;
 } 
 .Contents {
-    margin-left:10px;/*サイドバーとメインコンテンツの間に隙間                    をあけた*/
+    margin-left:10px;/*サイドバーとメインコンテンツの間に隙間をあけた*/
 	width: 80%; /* コンテンツの横幅を指定する */
 	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
 }
 article {
   display:flex;/*サイドバーとメインコンテンツを横並びにする                指定をした*/
 }
-
-
 
 table th ,td {
     border:1px solid;
