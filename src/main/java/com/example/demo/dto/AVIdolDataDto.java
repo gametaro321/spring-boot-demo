@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 @Data
@@ -16,12 +17,15 @@ public class AVIdolDataDto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")
+
     private Integer ID; 
     /** 名前 */
 	@Column(name="NAME")
+	@NotBlank(message = "名前を入力してください")
 	private String NAME;
     /** ふりがな */
 	@Column(name="FURIGANA")
+	@NotBlank
 	private String FURIGANA;
     /** タイプ */
 	@Column(name="TYPE")

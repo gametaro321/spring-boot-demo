@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="~{template :: layout(~{::title},~{::body/content()})}">
+	th:replace="~{template :: layout(~{::title},~{::link},~{::script},~{::body/content()})}">
 <head>
+<link >
+<script>
+</script>
 <!--/* (2) */-->
 <title>Create Staff Information</title>
 </head>
 <body>
+	<th:block th:replace="breadcrumb :: breadcrumb ('/,top|AVアイドルマスター')"></th:block>
 	<div id="wrapper" class="container-fluid">
 		<div class="Contents">
 			<form method="POST" action="/AVIdolMaster/list">

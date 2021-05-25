@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="~{template :: layout(~{::title},~{::body/content()})}">
+	th:replace="~{template :: layout(~{::title},~{::link},~{::script},~{::body/content()})}">
 <head>
+<link >
+<script>
+</script>
 <!--/* (2) */-->
 <title>Create Staff Information</title>
 </head>
 <body>
+	<th:block th:replace="breadcrumb :: breadcrumb ('/,top|/AVIdolMaster,AVアイドルマスター|詳細')"></th:block>
 	<div id="wrapper" class="container-fluid">
 		<div class="Contents">
 			<div id="wrapper" class="container-fluid">
@@ -54,7 +58,7 @@
 									<td th:text="*{BRITHPLACE}"></td>
 									<td th:text="*{HOBBY}"></td>
 						            <td>
-						                <form action="/AVIdolMaster/edit" method="post">
+						                <form action="/AVIdolMaster/edit" method="post" >
 						                    <input type="submit" class="btn btn-outline-primary" name="edit" value="編集">
 						                    <input type="hidden" name="DATA_PATH" th:value="*{DATA_PATH}">
 						                </form>

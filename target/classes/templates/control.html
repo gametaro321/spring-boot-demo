@@ -1,30 +1,96 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{template :: layout(~{::title},~{::body/content()})}">
+	th:replace="~{template :: layout(~{::title},~{::link},~{::script},~{::body/content()})}">
 <head>
+<link >
+
+<script type="text/javascript" th:src="@{/ajax_upload.js}"></script>
+<script type="text/javascript" th:src="@{/ajax_restapi.js}"></script>
+
 <!--/* (2) */-->
 <title>Control</title>
 </head>
 <body>
+	<th:block th:replace="breadcrumb :: breadcrumb ('/,top|コントロール')"></th:block>
 	<div id="wrapper" class="container-fluid">
 
 		<div class="Contents">
-
 			<div class="tabs">
-				<input id="all" type="radio" name="tab_item" checked> <label
-					class="tab_item" for="all">カレンダー</label> <input id="programming"
-					type="radio" name="tab_item"> <label class="tab_item"
-					for="programming">ファイル</label> <input id="design" type="radio"
-					name="tab_item"> <label class="tab_item" for="design">入力</label>
+				<input id="all" type="radio" name="tab_item" checked>
+				<label class="tab_item" for="all">カレンダー</label> 
+				<input id="programming" type="radio" name="tab_item"> 
+				<label class="tab_item" for="programming">ファイル</label>
+			    <input id="design" type="radio" name="tab_item">
+				<label class="tab_item" for="design">入力</label>
+			    <input id="aja" type="radio" name="tab_item">
+				<label class="tab_item" for="aja">ajax</label>
 				<div class="tab_content" id="all_content">
 					<div class="tab_content_description">
 						<table>
 							<tr>
 								<th>カレンダー</th>
 								<td><input type="date" name="date"></td>
-								<td><input type="submit" value="送信"></td>
 							</tr>
+							<tr>
+								<th>ボタン</th>
+								<td>
+								<input type="button" name="btn1" value="汎用ボタン">
+								<input type="reset" name="btn2" value="リセット" >
+								<input type="submit" name="btn3" value="送信" >
+								</td>
+							</tr>
+							<tr>
+								<th>ラジオボタン</th>
+								<td>
+								<input type="radio" name="test" value="test1" checked="checked" />テスト1
+								<input type="radio" name="test" value="test2" />テスト2
+								<input type="radio" name="test" value="test3" />テスト3
+								</td>
+							</tr>
+							<tr>
+								<th>チェックボックス</th>
+								<td>
+								<input type="checkbox" name="test" value="test1" checked="checked" />テスト1
+								<input type="checkbox" name="test" value="test2" />テスト2
+								<input type="checkbox" name="test" value="test3" />テスト3
+								</td>
+							</tr>
+							<tr>
+								<th>メニュー</th>
+								<td>
+								<select name="test">
+								<option value="test1" selected="selected">テスト1</option>
+								<option value="test2">テスト2</option>
+								<option value="test3">テスト3</option>
+								</select>								
+								</td>
+							</tr>
+							<tr>
+								<th>リストボックス</th>
+								<td>
+								<select name="test" size="3" multiple="multiple">
+								<option value="test1" selected="selected">テスト1</option>
+								<option value="test2">テスト2</option>
+								<option value="test3">テスト3</option>
+								</select>
+								</td>
+							</tr>
+							<tr>
+								<th>TEXT</th>
+								<td>
+								<input type="text" name="test1" value="test1" placeholder="テスト1" /><br>
+								<input type="text" name="test2"  placeholder="テスト2" maxlength="10"/><br>
+								<input type="password" name="test3"  placeholder="テスト3" required /><br>
+								<div class="toggle">
+								  <input class="field js-password" id="password2" type="password" value="hogehoge" placeholder="パスワードを入力" autocomplete="off" required="required">
+								  <div class="btn">
+								    <input class="btn-input js-password-toggle" id="eye" type="checkbox">
+								    <label class="btn-label js-password-label" for="eye"><i class="fas fa-eye"></i></label>
+								  </div>
+								</div>
 
+								</td>
+							</tr>
 						</table>
 					</div>
 				</div>
@@ -62,8 +128,25 @@
 						</table>
 					</div>
 				</div>
+				<div class="tab_content" id="aja_content">
+					<div class="tab_content_description">
+						<form method="POST" action="/IdolMaster/confirm">
+							<table >
+								<tr>
+									<th>郵便番号</th>
+									<td><input type="text" name="zipcode" value="" size="30" id="zipcd"></input></td>
+									<td><input type="button" value="ajax" size="30" id="getZipCd"></input></td>
+									<td><div id="result"></div></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
+		<input type="button" name="btn1" value="汎用ボタン">
+		<input type="reset" name="btn2" value="リセット" >
+		<input type="submit" name="btn3" value="送信" >
 		</div>
 </body>
 </html>

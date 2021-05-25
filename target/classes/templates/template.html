@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <!--/* (1) */-->
-<html class="no-js" xmlns:th="http://www.thymeleaf.org" th:fragment="layout (title,body)">
+<html class="no-js" xmlns:th="http://www.thymeleaf.org" th:fragment="layout (title,links,scripts, body)">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width">
-<link rel="stylesheet" th:href="@{/resources/app/css/styles.css}" type="text/css"
-    media="screen, projection">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/css/theme.default.min.css">
+<link rel="stylesheet" th:href="@{/tabctl.css}">
 <link rel="stylesheet" th:href="@{/upload.css}">
 <link rel="stylesheet" th:href="@{/body.css}">
-<link rel="stylesheet" th:href="@{/tabctl.css}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/css/theme.default.min.css">
+<!-- 各画面専用のcssを定義します -->
+<th:block th:replace="${links}" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" th:src="@{/ajax.js}"></script>
-<script type="text/javascript" th:src="@{/ajax_upload.js}"></script>
-<script type="text/javascript" th:src="@{/ajax_restapi.js}"></script>
-
+<!-- 各画面専用のjavascriptを定義します -->
+<th:block th:replace="${scripts}" />
 <script>
 $(document).ready(function() {
     $('#fav-table').tablesorter({

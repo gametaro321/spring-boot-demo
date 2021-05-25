@@ -1,6 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="~{template :: layout(~{::title},~{::body/content()})}">
+	th:replace="~{template :: layout(~{::title},~{::link},~{::script},~{::body/content()})}">
 <head>
+<link >
+<script>
+</script>
 <!--/* (2) */-->
 <title>Create Staff Information</title>
 </head>
@@ -9,7 +12,7 @@
 		<div class="container">
 			<h1 class="my-5">編集</h1>
 
-			<form th:object="${IdolMasterDataDto}" action="/AVIdolMaster/regit" method="post">
+			<form th:object="${AVIdolDataDto}" action="/AVIdolMaster/regit" method="post">
 				<table width=70%>
 					<tr>
 						<th><a th:href="*{DATA_PATH}" target=_blank rel="noopener">
@@ -21,10 +24,16 @@
 							<input type="hidden" th:field="*{IMAGE_PATH}">
 						</th>
 						<td valign="top" align="left"	>
+							 <table>
+							   <tr th:if="${validationError}" th:each="error : ${validationError}">
+							     <td style="color:red;" th:text="${error}"></td>
+							   </tr>
+							 </table>			
+							 		
 							<table class="table-borderd table-striped" >
 								<tr>
 									<th>ID</th>
-									<td><input type="text" th:field="*{ID}"></td>
+									<td><input type="text" th:field="*{ID}" th:errorclass= "fieldError"></td>
 								</tr>
 								<tr>
 									<th>DATA_PATH</th>
@@ -32,11 +41,15 @@
 								</tr>
 								<tr>
 									<th>名前</th>
-									<td><input type="text" th:field="*{NAME}"></td>
+									<td><input type="text" th:field="*{NAME}" >
+									<span th:if="${#fields.hasErrors('NAME')}" th:errors="*{NAME}"></span>
+									</td>
 								</tr>
 								<tr>
 									<th>フリガナ</th>
-									<td><input type="text" th:field="*{FURIGANA}"></td>
+									<td><input type="text" th:field="*{FURIGANA}">
+									<span th:if="${#fields.hasErrors('FURIGANA')}" th:errors="*{FURIGANA}"></span>
+									</td>
 								</tr>
 								<tr>
 									<th>タイプ</th>
@@ -80,13 +93,14 @@
 				</table>
 				<input type="submit" class="btn btn-outline-primary" name="post"
 					value="登録">
+					
 			</form>
-			<form th:object="${IdolMasterDataDto}" action="/AVIdolMaster/delete" method="post">
+			<form th:object="${AVIdolDataDto}" action="/AVIdolMaster/delete" method="post">
 				<input type="submit" class="btn btn-outline-primary" name="post"
 					value="削除">
-				<input type="hidden" th:field="*{ID}" >
-				<input type="hidden" th:field="*{NAME}" >
-				<input type="hidden" th:field="*{TYPE}" >
+				<input type="hidden" name="ID" th:value="*{ID}" >
+				<input type="hidden" name="NAME" th:value="*{NAME}" >
+				<input type="hidden" name="TYPE" th:value="*{TYPE}" >
 			</form>
 		</div>
 	</div>

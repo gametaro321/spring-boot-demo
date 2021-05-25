@@ -1,34 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{template :: layout(~{::title},~{::link},~{::script},~{::body/content()})}">
 <head>
-<meta charset="UTF-8"></meta>
-<title>Insert title here</title>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
-<script type="text/javascript"
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" th:src="@{/ajax.js}"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" th:href="@{/upload.css}">
-<link rel="stylesheet" th:href="@{/body.css}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/css/theme.default.min.css">
-<script>
-$(document).ready(function() {
-    $('#fav-table').tablesorter({
-        headers: {
-            2: { sorter: false }
-        }
-    } );
-});
-</script>
+<link >
+
+<script ></script>
+<title>アイドルマスター</title>
+
 </head>
 <body>
+	<th:block th:replace="breadcrumb :: breadcrumb ('/,top|アイドルマスター')"></th:block>
 	<div id="wrapper" class="container-fluid">
-		<div class="Header">ヘッダーを固定する</div>
 		<div class="Contents">
 			<div id="wrapper" class="container-fluid">
 				<form method="POST" action="/IdolMaster/confirm">
@@ -104,7 +86,6 @@ $(document).ready(function() {
 				</div>
 			</div>
 
-			<div class="Footer">フッターを固定する</div>
 		</div>
 	</div>
 </body>

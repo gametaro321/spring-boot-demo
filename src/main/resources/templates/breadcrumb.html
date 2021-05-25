@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>breadcrumb</title>
+</head>
+<body>
+<nav aria-label="breadcrumb" th:fragment="breadcrumb (items)">
+  <ol class="breadcrumb">
+    <th:block th:each="item : ${#strings.arraySplit(items, '|')}">
+      <li
+        class="breadcrumb-item"
+        th:with="splited=${#strings.arraySplit(item, ',')}"
+        th:attr="aria-current= ${#strings.contains(item, ',')} ? null : 'page'"
+        th:classappend="${itemStat.last} ? 'active' : '' "
+      >
+        <th:block th:switch="${#strings.contains(item, ',')}">
+          <th:block th:case="true">
+            <a th:href="@{${splited[0]}}" th:inline="text"
+              >[[${splited[1]}]]</a
+            >
+          </th:block>
+          <th:block th:case="*">
+            [[${splited[0]}]]
+          </th:block>
+        </th:block>
+      </li>
+    </th:block>
+  </ol>
+</nav>
+</body>
+</html>

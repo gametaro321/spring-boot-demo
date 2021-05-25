@@ -46,7 +46,7 @@ table th ,td {
 .table_sticky {
     display: block;
     overflow-y: scroll;
-    height: 72vh;
+    height: 68vh;
     border:1px solid;
     border-collapse: collapse;
 }
